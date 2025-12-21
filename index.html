@@ -54,6 +54,118 @@
         .code-block {
             background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
         }
+
+        /* Animated Earth Globe */
+        .earth-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .earth {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(14, 165, 233, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            box-shadow:
+                inset -30px -30px 60px rgba(0, 0, 0, 0.5),
+                inset 10px 10px 40px rgba(14, 165, 233, 0.2),
+                0 0 100px rgba(14, 165, 233, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .earth::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%230ea5e9' fill-opacity='0.3' d='M40,80 Q50,60 70,70 T90,50 Q100,40 120,55 T140,45 Q160,50 150,70 T170,90 Q180,110 160,120 T170,150 Q160,170 140,160 T110,170 Q90,180 80,160 T50,150 Q30,140 40,120 T30,90 Q20,70 40,80Z'/%3E%3Cpath fill='%238b5cf6' fill-opacity='0.25' d='M100,30 Q120,35 130,50 T150,70 Q140,90 120,85 T100,100 Q80,95 70,80 T60,55 Q70,35 100,30Z'/%3E%3Cpath fill='%230ea5e9' fill-opacity='0.2' d='M50,120 Q70,110 90,125 T110,140 Q100,160 75,155 T50,140 Q40,130 50,120Z'/%3E%3C/svg%3E") center/cover;
+            animation: rotate-globe 30s linear infinite;
+        }
+
+        .earth::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+        }
+
+        /* Grid lines overlay */
+        .earth-grid {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 8%,
+                    rgba(14, 165, 233, 0.1) 8%,
+                    rgba(14, 165, 233, 0.1) 8.5%
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 8%,
+                    rgba(14, 165, 233, 0.1) 8%,
+                    rgba(14, 165, 233, 0.1) 8.5%
+                );
+            animation: rotate-globe 60s linear infinite reverse;
+            opacity: 0.5;
+        }
+
+        /* Floating dots around globe */
+        .orbit-dots {
+            position: absolute;
+            inset: -50px;
+            animation: rotate-orbit 20s linear infinite;
+        }
+
+        .orbit-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #0ea5e9;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #0ea5e9;
+        }
+
+        .orbit-dot:nth-child(1) { top: 10%; left: 50%; animation: pulse 2s ease-in-out infinite; }
+        .orbit-dot:nth-child(2) { top: 30%; right: 5%; animation: pulse 2s ease-in-out infinite 0.5s; }
+        .orbit-dot:nth-child(3) { bottom: 20%; right: 15%; animation: pulse 2s ease-in-out infinite 1s; }
+        .orbit-dot:nth-child(4) { bottom: 10%; left: 40%; animation: pulse 2s ease-in-out infinite 1.5s; }
+        .orbit-dot:nth-child(5) { top: 40%; left: 5%; animation: pulse 2s ease-in-out infinite 0.75s; }
+
+        @keyframes rotate-globe {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate-orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased">
@@ -87,6 +199,19 @@
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"></div>
             <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+            <!-- Animated Earth Globe -->
+            <div class="earth-container">
+                <div class="earth">
+                    <div class="earth-grid"></div>
+                </div>
+                <div class="orbit-dots">
+                    <div class="orbit-dot"></div>
+                    <div class="orbit-dot"></div>
+                    <div class="orbit-dot"></div>
+                    <div class="orbit-dot"></div>
+                    <div class="orbit-dot"></div>
+                </div>
+            </div>
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div class="text-center">
