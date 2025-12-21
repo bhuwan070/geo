@@ -55,116 +55,40 @@
             background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
         }
 
-        /* Animated Earth Globe */
-        .earth-container {
+        /* Network Globe */
+        .globe-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            opacity: 0.15;
+            width: 700px;
+            height: 700px;
             pointer-events: none;
         }
 
-        .earth {
+        .globe-network {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            background:
-                radial-gradient(circle at 30% 30%, rgba(14, 165, 233, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
-                linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            box-shadow:
-                inset -30px -30px 60px rgba(0, 0, 0, 0.5),
-                inset 10px 10px 40px rgba(14, 165, 233, 0.2),
-                0 0 100px rgba(14, 165, 233, 0.3);
-            position: relative;
-            overflow: hidden;
-            animation: float 6s ease-in-out infinite;
+            animation: rotate-slow 60s linear infinite;
         }
 
-        .earth::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%230ea5e9' fill-opacity='0.3' d='M40,80 Q50,60 70,70 T90,50 Q100,40 120,55 T140,45 Q160,50 150,70 T170,90 Q180,110 160,120 T170,150 Q160,170 140,160 T110,170 Q90,180 80,160 T50,150 Q30,140 40,120 T30,90 Q20,70 40,80Z'/%3E%3Cpath fill='%238b5cf6' fill-opacity='0.25' d='M100,30 Q120,35 130,50 T150,70 Q140,90 120,85 T100,100 Q80,95 70,80 T60,55 Q70,35 100,30Z'/%3E%3Cpath fill='%230ea5e9' fill-opacity='0.2' d='M50,120 Q70,110 90,125 T110,140 Q100,160 75,155 T50,140 Q40,130 50,120Z'/%3E%3C/svg%3E") center/cover;
-            animation: rotate-globe 30s linear infinite;
-        }
-
-        .earth::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
-        }
-
-        /* Grid lines overlay */
-        .earth-grid {
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background:
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 8%,
-                    rgba(14, 165, 233, 0.1) 8%,
-                    rgba(14, 165, 233, 0.1) 8.5%
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 8%,
-                    rgba(14, 165, 233, 0.1) 8%,
-                    rgba(14, 165, 233, 0.1) 8.5%
-                );
-            animation: rotate-globe 60s linear infinite reverse;
-            opacity: 0.5;
-        }
-
-        /* Floating dots around globe */
-        .orbit-dots {
-            position: absolute;
-            inset: -50px;
-            animation: rotate-orbit 20s linear infinite;
-        }
-
-        .orbit-dot {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: #0ea5e9;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #0ea5e9;
-        }
-
-        .orbit-dot:nth-child(1) { top: 10%; left: 50%; animation: pulse 2s ease-in-out infinite; }
-        .orbit-dot:nth-child(2) { top: 30%; right: 5%; animation: pulse 2s ease-in-out infinite 0.5s; }
-        .orbit-dot:nth-child(3) { bottom: 20%; right: 15%; animation: pulse 2s ease-in-out infinite 1s; }
-        .orbit-dot:nth-child(4) { bottom: 10%; left: 40%; animation: pulse 2s ease-in-out infinite 1.5s; }
-        .orbit-dot:nth-child(5) { top: 40%; left: 5%; animation: pulse 2s ease-in-out infinite 0.75s; }
-
-        @keyframes rotate-globe {
+        @keyframes rotate-slow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        @keyframes rotate-orbit {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.8); }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes dash-flow {
+            to { stroke-dashoffset: -20; }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
+        @keyframes float-globe {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-15px); }
         }
     </style>
 </head>
@@ -199,18 +123,81 @@
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"></div>
             <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-            <!-- Animated Earth Globe -->
-            <div class="earth-container">
-                <div class="earth">
-                    <div class="earth-grid"></div>
-                </div>
-                <div class="orbit-dots">
-                    <div class="orbit-dot"></div>
-                    <div class="orbit-dot"></div>
-                    <div class="orbit-dot"></div>
-                    <div class="orbit-dot"></div>
-                    <div class="orbit-dot"></div>
-                </div>
+            <!-- Network Globe -->
+            <div class="globe-container" style="animation: float-globe 8s ease-in-out infinite;">
+                <svg class="globe-network" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Globe circle outline -->
+                    <circle cx="200" cy="200" r="150" stroke="url(#globe-gradient)" stroke-width="1" fill="none" opacity="0.3"/>
+                    <circle cx="200" cy="200" r="120" stroke="#0ea5e9" stroke-width="0.5" fill="none" opacity="0.15"/>
+                    <circle cx="200" cy="200" r="90" stroke="#0ea5e9" stroke-width="0.5" fill="none" opacity="0.1"/>
+
+                    <!-- Latitude lines -->
+                    <ellipse cx="200" cy="200" rx="150" ry="50" stroke="#0ea5e9" stroke-width="0.5" fill="none" opacity="0.15"/>
+                    <ellipse cx="200" cy="200" rx="150" ry="100" stroke="#0ea5e9" stroke-width="0.5" fill="none" opacity="0.12"/>
+                    <ellipse cx="200" cy="200" rx="50" ry="150" stroke="#0ea5e9" stroke-width="0.5" fill="none" opacity="0.15"/>
+                    <ellipse cx="200" cy="200" rx="100" ry="150" stroke="#0ea5e9" stroke-width="0.5" fill="none" opacity="0.12"/>
+
+                    <!-- Network connection lines -->
+                    <g stroke="url(#line-gradient)" stroke-width="1" fill="none" opacity="0.6">
+                        <path d="M120,120 Q200,80 280,140" stroke-dasharray="4,4" style="animation: dash-flow 2s linear infinite;"/>
+                        <path d="M100,200 Q150,150 200,120" stroke-dasharray="4,4" style="animation: dash-flow 2.5s linear infinite;"/>
+                        <path d="M200,120 Q250,160 300,180" stroke-dasharray="4,4" style="animation: dash-flow 1.8s linear infinite;"/>
+                        <path d="M280,140 Q320,200 280,270" stroke-dasharray="4,4" style="animation: dash-flow 2.2s linear infinite;"/>
+                        <path d="M120,280 Q180,240 200,280" stroke-dasharray="4,4" style="animation: dash-flow 1.9s linear infinite;"/>
+                        <path d="M200,280 Q240,300 280,270" stroke-dasharray="4,4" style="animation: dash-flow 2.3s linear infinite;"/>
+                        <path d="M100,200 Q80,260 120,280" stroke-dasharray="4,4" style="animation: dash-flow 2.1s linear infinite;"/>
+                        <path d="M120,120 Q80,160 100,200" stroke-dasharray="4,4" style="animation: dash-flow 1.7s linear infinite;"/>
+                        <path d="M200,120 Q200,200 200,280" stroke-dasharray="4,4" style="animation: dash-flow 3s linear infinite;"/>
+                        <path d="M300,180 Q340,220 300,260" stroke-dasharray="4,4" style="animation: dash-flow 2.4s linear infinite;"/>
+                        <path d="M150,180 Q180,220 160,260" stroke-dasharray="4,4" style="animation: dash-flow 2.6s linear infinite;"/>
+                        <path d="M240,150 Q270,190 250,240" stroke-dasharray="4,4" style="animation: dash-flow 2s linear infinite;"/>
+                    </g>
+
+                    <!-- Network nodes (cities/points) -->
+                    <g>
+                        <circle cx="120" cy="120" r="4" fill="#0ea5e9" style="animation: pulse-dot 2s ease-in-out infinite;"/>
+                        <circle cx="120" cy="120" r="8" fill="#0ea5e9" opacity="0.3"/>
+
+                        <circle cx="280" cy="140" r="4" fill="#8b5cf6" style="animation: pulse-dot 2s ease-in-out infinite 0.3s;"/>
+                        <circle cx="280" cy="140" r="8" fill="#8b5cf6" opacity="0.3"/>
+
+                        <circle cx="100" cy="200" r="3" fill="#0ea5e9" style="animation: pulse-dot 2s ease-in-out infinite 0.6s;"/>
+                        <circle cx="100" cy="200" r="6" fill="#0ea5e9" opacity="0.3"/>
+
+                        <circle cx="300" cy="180" r="3" fill="#0ea5e9" style="animation: pulse-dot 2s ease-in-out infinite 0.9s;"/>
+                        <circle cx="300" cy="180" r="6" fill="#0ea5e9" opacity="0.3"/>
+
+                        <circle cx="200" cy="120" r="5" fill="#8b5cf6" style="animation: pulse-dot 2s ease-in-out infinite 0.4s;"/>
+                        <circle cx="200" cy="120" r="10" fill="#8b5cf6" opacity="0.3"/>
+
+                        <circle cx="120" cy="280" r="4" fill="#0ea5e9" style="animation: pulse-dot 2s ease-in-out infinite 0.7s;"/>
+                        <circle cx="120" cy="280" r="8" fill="#0ea5e9" opacity="0.3"/>
+
+                        <circle cx="280" cy="270" r="4" fill="#8b5cf6" style="animation: pulse-dot 2s ease-in-out infinite 1s;"/>
+                        <circle cx="280" cy="270" r="8" fill="#8b5cf6" opacity="0.3"/>
+
+                        <circle cx="200" cy="280" r="3" fill="#0ea5e9" style="animation: pulse-dot 2s ease-in-out infinite 0.5s;"/>
+                        <circle cx="200" cy="280" r="6" fill="#0ea5e9" opacity="0.3"/>
+
+                        <circle cx="150" cy="180" r="3" fill="#0ea5e9" style="animation: pulse-dot 2s ease-in-out infinite 1.2s;"/>
+                        <circle cx="250" cy="220" r="3" fill="#8b5cf6" style="animation: pulse-dot 2s ease-in-out infinite 1.4s;"/>
+                        <circle cx="180" cy="240" r="2" fill="#0ea5e9" style="animation: pulse-dot 2s ease-in-out infinite 1.6s;"/>
+                        <circle cx="240" cy="160" r="2" fill="#0ea5e9" style="animation: pulse-dot 2s ease-in-out infinite 1.8s;"/>
+                    </g>
+
+                    <!-- Gradients -->
+                    <defs>
+                        <linearGradient id="globe-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0ea5e9"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                        <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#0ea5e9"/>
+                            <stop offset="50%" stop-color="#8b5cf6"/>
+                            <stop offset="100%" stop-color="#0ea5e9"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
             </div>
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
