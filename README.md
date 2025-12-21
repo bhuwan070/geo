@@ -220,7 +220,7 @@ The databases are distributed under their respective licenses:
 
 <p align="center">
   <a href="https://wp-statistics.com">
-    <img src="https://wp-statistics.com/wp-content/uploads/2024/01/logo.svg" alt="WP Statistics" width="200">
+    <strong>WP Statistics</strong>
   </a>
   <br>
   <sub>Maintained with ❤️ by the WP Statistics team</sub>
